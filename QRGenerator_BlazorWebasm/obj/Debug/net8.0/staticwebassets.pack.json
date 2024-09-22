@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\obj\\Debug\\net8.0\\compressed\\f31072ngc4.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\obj\\Debug\\net8.0\\scopedcss\\bundle\\QRGenerator_BlazorWebasm.styles.css",
+      "PackagePath": "staticwebassets\\QRGenerator_BlazorWebasm.styles.css"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\wwwroot\\appsettings.json",
+      "PackagePath": "staticwebassets\\appsettings.json"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "E:\\HPPM\\Projects\\QRGenerator_BlazorWebasm\\QRGenerator_BlazorWebasm\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.QRGenerator_BlazorWebasm.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.QRGenerator_BlazorWebasm.props",
+      "PackagePath": "build\\QRGenerator_BlazorWebasm.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.QRGenerator_BlazorWebasm.props",
+      "PackagePath": "buildMultiTargeting\\QRGenerator_BlazorWebasm.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.QRGenerator_BlazorWebasm.props",
+      "PackagePath": "buildTransitive\\QRGenerator_BlazorWebasm.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
