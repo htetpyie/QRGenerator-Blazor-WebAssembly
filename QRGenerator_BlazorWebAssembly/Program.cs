@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using QRGenerator_BlazorWebAssembly;
+using QRGenerator_BlazorWebAssembly.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.Services.AddScoped<QRCodeService>();
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 

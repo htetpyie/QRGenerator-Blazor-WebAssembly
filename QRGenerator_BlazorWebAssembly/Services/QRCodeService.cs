@@ -1,33 +1,42 @@
-using System.Drawing;
-using System.Drawing.Imaging;
+using System.Text;
 using QRCoder;
 
 namespace QRGenerator_BlazorWebAssembly.Services;
 
 public class QRCodeService
 {
-    public byte[] GenerateQR()
+    public QRCodeResponseModel GenerateQR(QRCodeRequestModel requestModel)
+    {
+        var responseModel = new QRCodeResponseModel();
+        var qrCodeData = GetQRCodeData(requestModel.Text, requestModel.QRType);
+
+        SvgQRCode svgQrCode = new SvgQRCode(qrCodeData);
+
+        var svgImg = svgQrCode.GetGraphic(20, darkColorHex: requestModel.WhiteColorHex,
+            lightColorHex: requestModel.DarkColorHex,
+            logo: requestModel.Logo);
+        responseModel.SvgString = svgImg;
+        SaveImage(responseModel.ByteData!);
+        return responseModel;
+    }
+
+    private QRCodeData GetQRCodeData(string text, EnumQrType qrType)
     {
         var qrGenerator = new QRCodeGenerator();
-        var qrCodedData = qrGenerator.CreateQrCode("QR test", QRCodeGenerator.ECCLevel.Q);
-        CustomQRCode qrCode = new CustomQRCode(qrCodedData);
-        Bitmap logoImage = new Bitmap(@"wwwroot/img/aircodlogo.jpg");
-
-        using (Bitmap qrCodeAsBitmap = qrCode.GetGraphic(20, Color.Black, Color.WhiteSmoke, logoImage))
+        var qrCodeData = qrType switch
         {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                qrCodeAsBitmap.Save(ms, ImageFormat.Png);
-                string base64String = Convert.ToBase64String(ms.ToArray());
-                SaveImage(ms.ToArray());
-                return ms.ToArray();
-            }
-        }
+            EnumQrType.Url => qrGenerator.CreateQrCode(new PayloadGenerator.Url(text), QRCodeGenerator.ECCLevel.Q),
+            EnumQrType.PhoneNumber => qrGenerator.CreateQrCode(new PayloadGenerator.PhoneNumber(text),
+                QRCodeGenerator.ECCLevel.Q),
+            EnumQrType.Text or _ => qrGenerator.CreateQrCode(text, QRCodeGenerator.ECCLevel.Q)
+        };
+
+        return qrCodeData;
     }
 
     public void SaveImage(byte[] qrCodeImage)
     {
-        var filePath = Directory.GetCurrentDirectory() + "/QRImage.png";
+        var filePath = "C:\\QRImage.png";
         File.WriteAllBytes(filePath, qrCodeImage);
     }
 }
