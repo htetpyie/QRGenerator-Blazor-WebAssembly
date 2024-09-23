@@ -829,7 +829,6 @@ E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net
 E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.QRGenerator_BlazorWebasm.props
 E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\staticwebassets.pack.json
 E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\scopedcss\Layout\MainLayout.razor.rz.scp.css
-E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\scopedcss\Layout\NavMenu.razor.rz.scp.css
 E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\scopedcss\bundle\QRGenerator_BlazorWebasm.styles.css
 E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\scopedcss\projectbundle\QRGenerator_BlazorWebasm.bundle.scp.css
 E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\compressed\f31072ngc4.gz
@@ -1044,3 +1043,4 @@ E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net
 E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\refint\QRGenerator_BlazorWebasm.dll
 E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\QRGenerator_BlazorWebasm.pdb
 E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\ref\QRGenerator_BlazorWebasm.dll
+E:\HPPM\Projects\QRGenerator_BlazorWebasm\QRGenerator_BlazorWebasm\obj\Debug\net8.0\QRGenerator_BlazorWebasm.sourcelink.json
