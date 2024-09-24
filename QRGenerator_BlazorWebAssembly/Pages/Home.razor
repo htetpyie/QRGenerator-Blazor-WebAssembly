@@ -3,22 +3,33 @@
 @using QRGenerator_BlazorWebAssembly.Services
 @inject QRCodeService _qrService
 
-<div class="container">
-    <div class="row">
-
+<div class="container bg-dnager">
+    <div class="row bg-success">
+        <div class="col-md-6 bg-light">
+            This is QR
+            <img src="@QRImage" width="200" height="200"/>
+        </div>
+        <div class="col-md-6 bg-dark">
+            This is content of text
+        </div>
     </div>
 </div>
 
 @code{
 
+    private QRCodeRequestModel Request { get; set; } = new();
+    private string? QRImage { get; set; }
+    
     protected override void OnInitialized()
     {
-        var qrRequest = new QRCodeRequestModel
+        Request ??= new();
+        Request = new QRCodeRequestModel
         {
-            Text = "testing qr",
-            Logo = new SvgQRCode.SvgLogo("wwwroot/favicon.png")
+            Text = "Enter your text",
+            //Logo = new SvgQRCode.SvgLogo("wwwroot/favicon.png")
         };
-        _qrService.GenerateQR(qrRequest);
+        var response = _qrService.GenerateQR(Request);
+        QRImage = string.Format("data:image/svg+xml;base64,{0}", response?.Base64String);
     }
 
 }
