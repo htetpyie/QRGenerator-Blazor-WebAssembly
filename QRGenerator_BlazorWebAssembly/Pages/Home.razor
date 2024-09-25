@@ -11,7 +11,7 @@
         <div class="col-md-6 mt-4">
             <div class="mb-3">
                 <label for="select-box" class="form-label">Select QR Type</label>
-                <select class="form-control" id="select-box" @onchange="OnSelectChange">
+                <select class="form-control" id="select-box" value="@Request.QRType" @onchange="OnSelectChange">
                     @foreach (var qr in Enum.GetValues<EnumQrType>())
                     {
                         <option value="@qr">@qr.GetName()</option>
@@ -20,7 +20,7 @@
             </div>
             <div class="mb-3">
                 <label for="qr-value" class="form-label">QR Value</label>
-                <input type="text" @onchange="OnInputChange" class="form-control" id="qr-value">
+                <input type="text" @onchange="OnInputChange" value="@Request.QRValue" class="form-control" id="qr-value">
             </div>
             <div class="mb-3">
                 <label for="white-color" class="form-label">QR Color</label>
@@ -97,7 +97,6 @@
         var response = _qrService.GenerateQR(Request);
         QRImage = string.Format("data:image/svg+xml;base64,{0}", response?.Base64String);
     }
-
 
     private async Task<byte[]> GetBytesFromFile(IBrowserFile file, int maxSize = 1024 * 1024 * 5)
     {
