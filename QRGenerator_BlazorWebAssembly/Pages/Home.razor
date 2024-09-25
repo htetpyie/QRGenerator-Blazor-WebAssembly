@@ -1,5 +1,4 @@
 ﻿@page "/"
-@using QRCoder
 @using QRGenerator_BlazorWebAssembly.Services
 @inject QRCodeService _qrService
 
@@ -9,20 +8,27 @@
             <img src="@QRImage" width="300" height="300"/>
         </div>
         <div class="col-md-6 mt-4">
-                <div class="mb-3">
-                    <label for="select-box" class="form-label">Select QR Type</label>
-                    <select class="form-control" id="select-box" @onchange="OnSelectChange">
-                        @foreach (var qr in Enum.GetValues<EnumQrType>())
-                        {
-                            <option value="@qr">@qr.GetName()</option>
-                        }
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="qr-value"  class="form-label">QR Value</label>
-                    <input type="text"  @onchange="OnInputChange" class="form-control" id="qr-value">
-                </div>
-
+            <div class="mb-3">
+                <label for="select-box" class="form-label">Select QR Type</label>
+                <select class="form-control" id="select-box" @onchange="OnSelectChange">
+                    @foreach (var qr in Enum.GetValues<EnumQrType>())
+                    {
+                        <option value="@qr">@qr.GetName()</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="qr-value" class="form-label">QR Value</label>
+                <input type="text" @onchange="OnInputChange" class="form-control" id="qr-value">
+            </div>
+            <div class="mb-3">
+                <label for="white-color" class="form-label">QR Value</label>
+                <input type="color" @onchange="OnWhiteColorHexChange" class="form-control" id="white-color">
+            </div>
+            <div class="mb-3">
+                <label for="dark-color" class="form-label">QR Value</label>
+                <input type="color" @onchange="OnDarkColorHexChange" class="form-control" id="dark-color">
+            </div>
         </div>
     </div>
 </div>
@@ -44,10 +50,22 @@
         Request.QRType = value!.ToEnum<EnumQrType>();
         GenerateQR();
     }
-    
+
     private void OnInputChange(ChangeEventArgs e)
     {
         Request.QRValue = e?.Value?.ToString()!;
+        GenerateQR();
+    }
+
+    private void OnWhiteColorHexChange(ChangeEventArgs e)
+    {
+        Request.WhiteColorHex = e?.Value?.ToString()!;
+        GenerateQR();
+    }
+
+    private void OnDarkColorHexChange(ChangeEventArgs e)
+    {
+        Request.DarkColorHex = e?.Value?.ToString()!;
         GenerateQR();
     }
 
