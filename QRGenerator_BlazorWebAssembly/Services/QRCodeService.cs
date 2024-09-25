@@ -8,7 +8,7 @@ public class QRCodeService
     public QRCodeResponseModel GenerateQR(QRCodeRequestModel requestModel)
     {
         var responseModel = new QRCodeResponseModel();
-        var qrCodeData = GetQRCodeData(requestModel.Text, requestModel.QRType);
+        var qrCodeData = GetQRCodeData(requestModel.QRValue, requestModel.QRType);
 
         SvgQRCode svgQrCode = new SvgQRCode(qrCodeData);
 

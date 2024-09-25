@@ -3,33 +3,26 @@
 @using QRGenerator_BlazorWebAssembly.Services
 @inject QRCodeService _qrService
 
-<div class="container bg-danger mt-4">
-    <div class="row bg-success">
-        <div class="col-md-6 bg-light">
-            This is QR
-            <img src="@QRImage" width="200" height="200"/>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 mt-4 bg-light">
+            <img src="@QRImage" width="300" height="300"/>
         </div>
-        <div class="col-md-6">
-            <form>
+        <div class="col-md-6 mt-4">
                 <div class="mb-3">
                     <label for="select-box" class="form-label">Select QR Type</label>
-                    <select class="form-control" id="select-box" @bind-value="Request.QRType">
+                    <select class="form-control" id="select-box" @onchange="OnSelectChange">
                         @foreach (var qr in Enum.GetValues<EnumQrType>())
                         {
-                        <option value="@(qr == EnumQrType.Text)">@qr</option>
+                            <option value="@qr">@qr.GetName()</option>
                         }
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="qr-value"  class="form-label">QR Value</label>
+                    <input type="text"  @onchange="OnInputChange" class="form-control" id="qr-value">
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+
         </div>
     </div>
 </div>
@@ -38,15 +31,28 @@
 
     private QRCodeRequestModel Request { get; set; } = new();
     private string? QRImage { get; set; }
-    
+
     protected override void OnInitialized()
     {
         Request ??= new();
-        Request = new QRCodeRequestModel
-        {
-            Text = "Enter your text",
-            //Logo = new SvgQRCode.SvgLogo("wwwroot/favicon.png")
-        };
+        GenerateQR();
+    }
+
+    private void OnSelectChange(ChangeEventArgs e)
+    {
+        var value = e?.Value?.ToString() ?? EnumQrType.Text.ToString();
+        Request.QRType = value!.ToEnum<EnumQrType>();
+        GenerateQR();
+    }
+    
+    private void OnInputChange(ChangeEventArgs e)
+    {
+        Request.QRValue = e?.Value?.ToString()!;
+        GenerateQR();
+    }
+
+    private void GenerateQR()
+    {
         var response = _qrService.GenerateQR(Request);
         QRImage = string.Format("data:image/svg+xml;base64,{0}", response?.Base64String);
     }
