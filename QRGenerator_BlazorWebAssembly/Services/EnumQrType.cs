@@ -11,3 +11,11 @@ public enum EnumQrType
     [Display(Name = "Phone Number")]
     PhoneNumber
 }
+
+public enum ImageType
+{
+    PNG,
+    JPG,
+    JPEG,
+    
+}
