@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using QRCoder
 @using QRGenerator_BlazorWebAssembly.Services
 @inject QRCodeService _qrService
 
@@ -22,12 +23,17 @@
                 <input type="text" @onchange="OnInputChange" class="form-control" id="qr-value">
             </div>
             <div class="mb-3">
-                <label for="white-color" class="form-label">QR Value</label>
+                <label for="white-color" class="form-label">QR Color</label>
                 <input type="color" @onchange="OnWhiteColorHexChange" class="form-control" id="white-color">
             </div>
             <div class="mb-3">
-                <label for="dark-color" class="form-label">QR Value</label>
+                <label for="dark-color" class="form-label">Background Color</label>
                 <input type="color" @onchange="OnDarkColorHexChange" class="form-control" id="dark-color">
+            </div>
+            <div class="mb-3">
+                <label for="logo" class="form-label">Logo</label>
+                <InputFile accept="image/jpeg" OnChange="OnLogoChange"
+                           multiple class="form-control" id="logo"/>
             </div>
         </div>
     </div>
@@ -36,7 +42,9 @@
 @code{
 
     private QRCodeRequestModel Request { get; set; } = new();
+    private IBrowserFile? LoadedFile { get; set; }
     private string? QRImage { get; set; }
+    private const int MaxAllowedFileCount = 1;
 
     protected override void OnInitialized()
     {
@@ -69,10 +77,34 @@
         GenerateQR();
     }
 
+    private async Task OnLogoChange(InputFileChangeEventArgs e)
+    {
+        int maxSize = 1024 * 1024 * 5;
+        LoadedFile = e.GetMultipleFiles(MaxAllowedFileCount).FirstOrDefault();
+        if (LoadedFile?.Size > maxSize)
+        {
+            return;
+        }
+
+        var fileInByte = await GetBytesFromFile(LoadedFile);
+        var logo = new SvgQRCode.SvgLogo(fileInByte);
+        Request.Logo = logo;
+        GenerateQR();
+    }
+
     private void GenerateQR()
     {
         var response = _qrService.GenerateQR(Request);
         QRImage = string.Format("data:image/svg+xml;base64,{0}", response?.Base64String);
+    }
+
+
+    private async Task<byte[]> GetBytesFromFile(IBrowserFile file, int maxSize = 1024 * 1024 * 5)
+    {
+        var fileStream = file.OpenReadStream();
+        var ms = new MemoryStream();
+        await fileStream.CopyToAsync(ms);
+        return ms.ToArray();
     }
 
 }
