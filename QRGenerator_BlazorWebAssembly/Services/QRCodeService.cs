@@ -16,7 +16,7 @@ public class QRCodeService
             lightColorHex: requestModel.DarkColorHex,
             logo: requestModel.Logo);
         responseModel.SvgString = svgImg;
-        SaveImage(responseModel.ByteData!);
+        //SaveImage(responseModel.ByteData!);
         return responseModel;
     }
 
