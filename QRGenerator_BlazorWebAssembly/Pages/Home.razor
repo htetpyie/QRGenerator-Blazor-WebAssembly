@@ -16,7 +16,7 @@
                     <select class="form-control" id="select-box" value="@Request.QRType" @onchange="OnSelectChange">
                         @foreach (var qr in Enum.GetValues<EnumQrType>())
                         {
-                            <option value="@qr">@qr.GetName()</option>
+                            <option value="@qr">@qr</option>
                         }
                     </select>
                 </div>
@@ -27,10 +27,10 @@
                 <div class="mb-3">
                     <label for="white-color" class="form-label">QR Color</label>
                     <div class="row">
-                        <div class="col-4">
-                            <input type="color" @onchange="OnWhiteColorHexChange" value="@Request.WhiteColorHex" class="form-control" id="white-color">
+                        <div class="col-3">
+                            <input type="color" style="height: 100%;" @onchange="OnWhiteColorHexChange" value="@Request.WhiteColorHex" class="form-control" id="white-color">
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <input type="text" @onchange="OnWhiteColorHexChange" value="@Request.WhiteColorHex" class="form-control"/>
                         </div>
                     </div>
@@ -38,10 +38,10 @@
                 <div class="mb-3">
                     <label for="dark-color" class="form-label">Background Color</label>
                     <div class="row">
-                        <div class="col-4">
-                            <input type="color" @onchange="OnDarkColorHexChange" value="@Request.DarkColorHex" class="form-control" id="dark-color">
+                        <div class="col-3">
+                            <input type="color" style="height: 100%;" @onchange="OnDarkColorHexChange" value="@Request.DarkColorHex" class="form-control" id="dark-color">
                         </div>
-                        <div class="col-8">
+                        <div class="col-9">
                             <input type="text" @onchange="OnDarkColorHexChange" value="@Request.DarkColorHex" class="form-control"/>
                         </div>
                     </div>
