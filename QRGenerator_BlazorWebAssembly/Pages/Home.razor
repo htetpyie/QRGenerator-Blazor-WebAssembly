@@ -6,37 +6,53 @@
 
 <div class="container mt-4">
     <div class="row">
-        <div class="col-md-6 mt-4 bg-light">
-            <img src="@QRImage" width="300" height="300"/>
+        <div class="col-md-6 mt-4 text-center">
+            <img src="@QRImage" width="250" height="250"/>
         </div>
-        <div class="col-md-6 mt-4">
-            <div class="mb-3">
-                <label for="select-box" class="form-label">Select QR Type</label>
-                <select class="form-control" id="select-box" value="@Request.QRType" @onchange="OnSelectChange">
-                    @foreach (var qr in Enum.GetValues<EnumQrType>())
-                    {
-                        <option value="@qr">@qr.GetName()</option>
-                    }
-                </select>
+        <div class="col-md-6 mt-4 text-start">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="select-box" class="form-label">Select QR Type</label>
+                    <select class="form-control" id="select-box" value="@Request.QRType" @onchange="OnSelectChange">
+                        @foreach (var qr in Enum.GetValues<EnumQrType>())
+                        {
+                            <option value="@qr">@qr.GetName()</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="qr-value" class="form-label">QR Value</label>
+                    <input type="text" @onchange="OnInputChange" value="@Request.QRValue" class="form-control" id="qr-value">
+                </div>
+                <div class="mb-3">
+                    <label for="white-color" class="form-label">QR Color</label>
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="color" @onchange="OnWhiteColorHexChange" value="@Request.WhiteColorHex" class="form-control" id="white-color">
+                        </div>
+                        <div class="col-8">
+                            <input type="text" @onchange="OnWhiteColorHexChange" value="@Request.WhiteColorHex" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="dark-color" class="form-label">Background Color</label>
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="color" @onchange="OnDarkColorHexChange" value="@Request.DarkColorHex" class="form-control" id="dark-color">
+                        </div>
+                        <div class="col-8">
+                            <input type="text" @onchange="OnDarkColorHexChange" value="@Request.DarkColorHex" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="logo" class="form-label">Logo</label>
+                    <InputFile accept="image/jpeg" OnChange="OnLogoChange"
+                               multiple class="form-control" id="logo"/>
+                </div>
+                <button type="button" @onclick="DownloadImage" class="btn btn-primary">Download</button>
             </div>
-            <div class="mb-3">
-                <label for="qr-value" class="form-label">QR Value</label>
-                <input type="text" @onchange="OnInputChange" value="@Request.QRValue" class="form-control" id="qr-value">
-            </div>
-            <div class="mb-3">
-                <label for="white-color" class="form-label">QR Color</label>
-                <input type="color" @onchange="OnWhiteColorHexChange" class="form-control" id="white-color">
-            </div>
-            <div class="mb-3">
-                <label for="dark-color" class="form-label">Background Color</label>
-                <input type="color" @onchange="OnDarkColorHexChange" class="form-control" id="dark-color">
-            </div>
-            <div class="mb-3">
-                <label for="logo" class="form-label">Logo</label>
-                <InputFile accept="image/jpeg" OnChange="OnLogoChange"
-                           multiple class="form-control" id="logo"/>
-            </div>
-            <button type="button" @onclick="DownloadImage" class="btn btn-primary">Download</button>
         </div>
     </div>
 </div>
@@ -109,7 +125,7 @@
         await fileStream.CopyToAsync(ms);
         return ms.ToArray();
     }
-    
+
     private async Task DownloadImage()
     {
         if (QRByte is null) return;
