@@ -1,6 +1,6 @@
 #### QR Generator Using Blazor Web Assembly
 
-![pj-img.png](img.png)
+![pj-img.png](pj-img.png)
 
 #### Features
 * QR Types (Normal Text, URL, Phone Number)
