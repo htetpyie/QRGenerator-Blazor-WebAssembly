@@ -1,4 +1,4 @@
-#### QR Generator Using Blazor Web Assembly`
+#### QR Generator Using Blazor Web Assembly
 
 ![img.png](img.png)
 #### Features
