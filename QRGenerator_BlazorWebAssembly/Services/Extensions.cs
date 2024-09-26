@@ -13,10 +13,10 @@ public static class Extensions
     {
         return Convert.ToInt32(enumObj);
     }
-    
-    public static T ToEnum<T>(this string enumName) where T: Enum
+
+    public static T ToEnum<T>(this string enumName) where T : Enum
     {
-        return (T)Enum.Parse(typeof(T),enumName, true);
+        return (T)Enum.Parse(typeof(T), enumName, true);
     }
 
     public static bool IsNullOrWhiteSpace(this string text)
